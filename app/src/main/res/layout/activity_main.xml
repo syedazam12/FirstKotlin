@@ -7,27 +7,34 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/background">
-    </RelativeLayout>
+<!--    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--        android:orientation="vertical"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:background="@drawable/background">-->
+<!--    </RelativeLayout>-->
 
     <Button
         android:id="@+id/button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Login"
-        tools:layout_editor_absoluteX="151dp"
-        tools:layout_editor_absoluteY="278dp" />
+        tools:layout_editor_absoluteX="322dp"
+        tools:layout_editor_absoluteY="72dp" />
 
     <Button
         android:id="@+id/button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Password"
-        tools:layout_editor_absoluteX="138dp"
-        tools:layout_editor_absoluteY="390dp" />
+        android:text="SIGNUP"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="554dp" />
 
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="this is my demo app"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="55dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
