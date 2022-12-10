@@ -3,4 +3,6 @@
     <string name="login">Login</string>
     <string name="register">Register</string>
     <string name="learner_cloud_io">learner-cloud.io</string>
+    <string name="loginActivity">New Activity</string>
+    <string name="enter_your_name">Enter your name</string>
 </resources>
