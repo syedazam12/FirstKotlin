@@ -1,10 +1,10 @@
 package com.example.firstkotlin
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity()
 {
@@ -16,7 +16,7 @@ class MainActivity : AppCompatActivity()
         val loginButton = findViewById<Button>(R.id.loginButton)
         loginButton.setOnClickListener{
             Toast.makeText(this@MainActivity, "Redirecting..", Toast.LENGTH_SHORT).show()
-            val intent = Intent(this@MainActivity, LoginActivity::class.java)
+            val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
         }
 
