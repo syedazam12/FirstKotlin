@@ -40,6 +40,18 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name=".SignupActivity"
+            android:theme="@style/Theme.LoginUI."
+            android:exported="false" >
+
+            <intent-filter>
+                <action android:name="android.intent.action.OPEN_SIGNUP_ACTIVITY"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+
     </application>
 
 </manifest>

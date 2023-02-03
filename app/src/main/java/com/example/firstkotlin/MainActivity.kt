@@ -16,14 +16,16 @@ class MainActivity : AppCompatActivity()
         val loginButton = findViewById<Button>(R.id.loginButton)
         loginButton.setOnClickListener{
             Toast.makeText(this@MainActivity, "Redirecting..", Toast.LENGTH_SHORT).show()
-            val intent = Intent(this, LoginActivity::class.java)
-            startActivity(intent)
+            val intentLogin = Intent(this, LoginActivity::class.java)
+            startActivity(intentLogin)
         }
 
 
         val registerButton = findViewById<Button>(R.id.registerButton)
         registerButton.setOnClickListener {
-            Toast.makeText(this@MainActivity, "Are you sure you want to register?", Toast.LENGTH_LONG).show()
+//            Toast.makeText(this@MainActivity, "Are you sure you want to register?", Toast.LENGTH_LONG).show()
+            val intentSignup = Intent(this, SignupActivity::class.java)
+            startActivity(intentSignup)
         }
     }
 }

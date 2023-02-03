@@ -5,4 +5,15 @@
     <string name="learner_cloud_io">learner-cloud.io</string>
     <string name="loginActivity">New Activity</string>
     <string name="enter_your_name">Enter your name</string>
+    <string name="emailText">Email Address</string>
+    <string name="passwordText">Password</string>
+    <string name="emailHintText">Enter your email address</string>
+    <string name="passwordHintText">Enter your password</string>
+    <string name="imageDescription">Logo will be added here</string>
+    <string name="fName">First Name</string>
+    <string name="lName">Last Name</string>
+    <string name="phoneNumber">Phone Number</string>
+    <string name="fNameHint">Enter first name</string>
+    <string name="lNameHint">Enter last name</string>
+    <string name="phoneHint">Enter phone number</string>
 </resources>
