@@ -16,4 +16,5 @@
     <string name="fNameHint">Enter first name</string>
     <string name="lNameHint">Enter last name</string>
     <string name="phoneHint">Enter phone number</string>
+    <string name="welcomeUser">Welcome Student!</string>
 </resources>

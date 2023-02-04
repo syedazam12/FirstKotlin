@@ -27,8 +27,8 @@
 
     <EditText
         android:id="@+id/emailEditTextLogIn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="250dp"
+        android:layout_height="49dp"
         android:autofillHints="emailAddress"
         android:hint="@string/emailHintText"
         android:inputType="textEmailAddress"
@@ -54,12 +54,12 @@
         app:layout_constraintHorizontal_bias="0.178"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.581" />
+        app:layout_constraintVertical_bias="0.582" />
 
     <EditText
         android:id="@+id/passwordEditTextLogIn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="250dp"
+        android:layout_height="49dp"
         android:autofillHints="password"
         android:hint="@string/passwordHintText"
         android:inputType="textPassword"
@@ -68,10 +68,10 @@
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.399"
+        app:layout_constraintHorizontal_bias="0.479"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.651" />
+        app:layout_constraintVertical_bias="0.654" />
 
     <Button
         android:id="@+id/loginPageButton"
@@ -79,7 +79,7 @@
         android:layout_height="wrap_content"
         android:text="@string/login"
         android:textAlignment="center"
-        android:textSize="20sp"
+        android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
