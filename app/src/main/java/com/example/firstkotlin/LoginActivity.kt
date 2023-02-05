@@ -1,5 +1,6 @@
 package com.example.firstkotlin
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.Toast
@@ -23,6 +24,9 @@ class LoginActivity : AppCompatActivity()
         val loginPageButton = findViewById<Button>(R.id.loginPageButton)
         loginPageButton.setOnClickListener {
             Toast.makeText(this@LoginActivity, "Checking credentials...", Toast.LENGTH_LONG).show()
+
+            val intentCamera = Intent(this, CameraActivity::class.java)
+            startActivity(intentCamera)
         }
     }
 }

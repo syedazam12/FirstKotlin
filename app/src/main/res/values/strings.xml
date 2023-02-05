@@ -17,4 +17,5 @@
     <string name="lNameHint">Enter last name</string>
     <string name="phoneHint">Enter phone number</string>
     <string name="welcomeUser">Welcome Student!</string>
+    <string name="recordVideoBUTTON">Record Video</string>
 </resources>

@@ -1,5 +1,6 @@
 package com.example.firstkotlin
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.Toast
@@ -15,6 +16,9 @@ class SignupActivity : AppCompatActivity()
         val signupPageButton = findViewById<Button>(R.id.registerPageButton)
         signupPageButton.setOnClickListener {
             Toast.makeText(this@SignupActivity, "Saving credentials...", Toast.LENGTH_LONG).show()
+
+            val intentDirectToLogin = Intent(this, LoginActivity::class.java)
+            startActivity(intentDirectToLogin)
         }
     }
 }
