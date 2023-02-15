@@ -5,18 +5,13 @@ package com.example.firstkotlin
 import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.os.Bundle
-import android.os.Environment
 import android.provider.MediaStore
 import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import java.io.File
-import java.io.FileOutputStream
 
 
 
@@ -47,15 +42,16 @@ class CameraActivity  : AppCompatActivity()
     }
 
     private val cameraPermissionCode = 100
-    private val cameraRequestCode = 200
+//    private val cameraRequestCode = 200
+    private val videoRequestCode = 300
     private fun launchCamera() {
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED ) {
-            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.CAMERA), cameraPermissionCode)
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED || ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED ) {
+            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.CAMERA, Manifest.permission.RECORD_AUDIO), cameraPermissionCode)
         }
         
         else {
-            val intentCamera = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-            startActivityForResult(intentCamera, cameraRequestCode)
+            val intentCamera = Intent(MediaStore.ACTION_VIDEO_CAPTURE)
+            startActivityForResult(intentCamera, videoRequestCode)
         }    
     }
 
@@ -66,12 +62,12 @@ class CameraActivity  : AppCompatActivity()
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == cameraPermissionCode) {
-            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED && grantResults[1] == PackageManager.PERMISSION_GRANTED) {
                 launchCamera()
             }
 
             else {
-                Toast.makeText(this, "Camera permission denied", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Camera and microphone permission denied", Toast.LENGTH_SHORT).show()
             }
         }
     }
@@ -79,20 +75,22 @@ class CameraActivity  : AppCompatActivity()
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-        if( requestCode == cameraRequestCode && resultCode == RESULT_OK ) {
-            val imageBitmap = data?.extras?.get("data") as Bitmap
+        if( requestCode == videoRequestCode && resultCode == RESULT_OK ) {
+//            val imageBitmap = data?.extras?.get("data") as Bitmap
 
-            val better = BitmapFactory.Options()
-            better.inSampleSize = 0.5f.toInt()
+//            val better = BitmapFactory.Options()
+//            better.inSampleSize = 0.5f.toInt()
 
-            val pictureDirectory = getExternalFilesDir(Environment.DIRECTORY_PICTURES)
-            val pictureFile = File.createTempFile( "photo", ".jpg", pictureDirectory )
+//            val pictureDirectory = getExternalFilesDir(Environment.DIRECTORY_PICTURES)
+//            val pictureFile = File.createTempFile( "photo", ".jpg", pictureDirectory )
 
-            val fos = FileOutputStream(pictureFile)
-            imageBitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos)
-            fos.close()
+//            val fos = FileOutputStream(pictureFile)
+//            imageBitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos)
+//            fos.close()
 
-            Toast.makeText(this, "Image saved to ${pictureFile.absolutePath}", Toast.LENGTH_LONG).show()
+            val videoUri = data?.data
+
+            Toast.makeText(this, "Video saved to ${videoUri.toString()}", Toast.LENGTH_SHORT).show()
         }
     }
 
