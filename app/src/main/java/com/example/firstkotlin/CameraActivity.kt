@@ -3,8 +3,10 @@
 package com.example.firstkotlin
 
 import android.Manifest
+import android.content.ContentValues
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.location.LocationManager
 import android.os.Bundle
 import android.provider.MediaStore
 import android.widget.Button
@@ -12,8 +14,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-
-
+import java.util.*
 
 class CameraActivity  : AppCompatActivity()
 {
@@ -42,14 +43,14 @@ class CameraActivity  : AppCompatActivity()
     }
 
     private val cameraPermissionCode = 100
-//    private val cameraRequestCode = 200
     private val videoRequestCode = 300
     private fun launchCamera() {
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED || ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED ) {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED || ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED )
+        {
             ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.CAMERA, Manifest.permission.RECORD_AUDIO), cameraPermissionCode)
         }
-        
-        else {
+        else
+        {
             val intentCamera = Intent(MediaStore.ACTION_VIDEO_CAPTURE)
             startActivityForResult(intentCamera, videoRequestCode)
         }    
@@ -59,38 +60,55 @@ class CameraActivity  : AppCompatActivity()
 //        private const val CAMERA_REQUEST_CODE = 100
 //    }
 
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray)
+    {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if (requestCode == cameraPermissionCode) {
-            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED && grantResults[1] == PackageManager.PERMISSION_GRANTED) {
+        if (requestCode == cameraPermissionCode)
+        {
+            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED && grantResults[1] == PackageManager.PERMISSION_GRANTED)
+            {
                 launchCamera()
             }
 
             else {
                 Toast.makeText(this, "Camera and microphone permission denied", Toast.LENGTH_SHORT).show()
             }
+            {
+                val videoUri = data?.data
+
+                if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED)
+                {
+//                // TODO: Consider calling
+//                //    ActivityCompat#requestPermissions
+//                // here to request the missing permissions, and then overriding
+//                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+//                //                                          int[] grantResults)
+//                // to handle the case where the user grants the permission. See the documentation
+//                // for ActivityCompat#requestPermissions for more details.
+//                return
+                    val locationManager = getSystemService(LOCATION_SERVICE) as LocationManager
+                    val location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER)
+
+                    val values = ContentValues().apply {
+                        put(MediaStore.Video.Media.LATITUDE, location?.latitude)
+                        put(MediaStore.Video.Media.LONGITUDE, location?.longitude)
+                    }
+
+                    contentResolver.update(videoUri!!, values, null, null)
+
+                    Toast.makeText(this, "Video saved to $videoUri", Toast.LENGTH_LONG).show()
         }
     }
     @Deprecated("Deprecated in Java")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-        if( requestCode == videoRequestCode && resultCode == RESULT_OK ) {
-//            val imageBitmap = data?.extras?.get("data") as Bitmap
-
-//            val better = BitmapFactory.Options()
-//            better.inSampleSize = 0.5f.toInt()
-
-//            val pictureDirectory = getExternalFilesDir(Environment.DIRECTORY_PICTURES)
-//            val pictureFile = File.createTempFile( "photo", ".jpg", pictureDirectory )
-
-//            val fos = FileOutputStream(pictureFile)
-//            imageBitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos)
-//            fos.close()
-
-            val videoUri = data?.data
-
-            Toast.makeText(this, "Video saved to ${videoUri.toString()}", Toast.LENGTH_SHORT).show()
+        if( requestCode == videoRequestCode && resultCode == RESULT_OK )
+            }
+            else
+            {
+                Toast.makeText(this, "Location permission denied", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 

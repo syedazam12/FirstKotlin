@@ -2,7 +2,7 @@
     <string name="app_name">First Kotlin</string>
     <string name="login">Login</string>
     <string name="register">Register</string>
-    <string name="learner_cloud_io">learner-cloud.io</string>
+    <string name="learner_cloud_io">learnercloud.io</string>
     <string name="loginActivity">New Activity</string>
     <string name="enter_your_name">Enter your name</string>
     <string name="emailText">Email Address</string>
@@ -16,6 +16,6 @@
     <string name="fNameHint">Enter first name</string>
     <string name="lNameHint">Enter last name</string>
     <string name="phoneHint">Enter phone number</string>
-    <string name="welcomeUser">Welcome Student!</string>
+    <string name="welcomeUser">Welcome, Instructor!</string>
     <string name="recordVideoBUTTON">Record Video</string>
 </resources>
