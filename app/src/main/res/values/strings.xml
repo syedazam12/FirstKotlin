@@ -18,4 +18,5 @@
     <string name="phoneHint">Enter phone number</string>
     <string name="welcomeUser">Welcome, Instructor!</string>
     <string name="recordVideoBUTTON">Record Video</string>
+    <string name="forgotPass">Forgot Credentials?</string>
 </resources>
