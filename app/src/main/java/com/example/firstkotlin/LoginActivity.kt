@@ -17,9 +17,6 @@ class LoginActivity : AppCompatActivity()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.login_activity)
 
-//        inputUsername=findViewById(R.id.loginText)
-//        inputPassword=findViewById(R.id.passwordText)
-
         val loginPageButton = findViewById<Button>(R.id.loginPageButton)
         loginPageButton.setOnClickListener {
             Toast.makeText(this@LoginActivity, "Checking credentials...", Toast.LENGTH_LONG).show()
@@ -35,14 +32,9 @@ class LoginActivity : AppCompatActivity()
         }
     }
 
-//    private fun launchLearnerCloud() {
-//        val forgotPasswordURL = "http://learnercloud.io/forgot-password"
-//
-//        val intentForgotPass  = Intent(Intent.ACTION_VIEW, Uri.parse(forgotPasswordURL))
-//        startActivity(intentForgotPass)
-//    }
-
     fun launchLearnerCloud(view: View) {
+        Toast.makeText(this, "Launching website", Toast.LENGTH_SHORT).show()
+
         val forgotPasswordURL = "http://learnercloud.io/forgot-password"
 
         val intentForgotPass  = Intent(Intent.ACTION_VIEW, Uri.parse(forgotPasswordURL))

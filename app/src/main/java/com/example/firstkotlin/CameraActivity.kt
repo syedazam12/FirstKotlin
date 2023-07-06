@@ -37,22 +37,12 @@ class CameraActivity  : AppCompatActivity()
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED || ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION), locationPermissionCode)
         }
-
-//        recordVideoButton.setOnClickListener{
-//            if (mediaRecorder == null)
-//            {
-//                startRecording()
-//            }
-//            else
-//            {
-//                stopRecording()
-//            }
-//        }
     }
 
     private val cameraPermissionCode = 100
     private val videoRequestCode = 300
     private val locationPermissionCode = 500
+    
     private fun launchCamera() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED || ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED )
         {
@@ -84,18 +74,6 @@ class CameraActivity  : AppCompatActivity()
         super.onActivityResult(requestCode, resultCode, data)
 
         if( requestCode == videoRequestCode && resultCode == RESULT_OK ) {
-//            val imageBitmap = data?.extras?.get("data") as Bitmap
-
-//            val better = BitmapFactory.Options()
-//            better.inSampleSize = 0.5f.toInt()
-
-//            val pictureDirectory = getExternalFilesDir(Environment.DIRECTORY_PICTURES)
-//            val pictureFile = File.createTempFile( "photo", ".jpg", pictureDirectory )
-
-//            val fos = FileOutputStream(pictureFile)
-//            imageBitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos)
-//            fos.close()
-
             val videoUri = data?.data
 
             if (videoUri != null) {
@@ -130,47 +108,3 @@ class CameraActivity  : AppCompatActivity()
         context.contentResolver.update(videoUri, values, null, null)
     }
 }
-
-//private fun startRecording() {
-//    var mediaRecorder = MediaRecorder.apply {
-//        setAudioSource(MediaRecorder.AudioSource.MIC)
-//        setVideoSource(MediaRecorder.VideoSource.CAMERA)
-//        setOutputFormat(MediaRecorder.OutputFormat.MPEG_4)
-//        setAudioEncoder(MediaRecorder.AudioEncoder.AAC)
-//        setOutputFile(getOutputFile().absolutePath)
-//
-//        try {
-//            prepare()
-//            start()
-//
-//            Toast.makeText(this@CameraActivity, "Recording started", Toast.LENGTH_SHORT).show()
-//        } catch (e: IOException) {
-//            e.printStackTrace()
-//        }
-//    }
-//}
-//
-//private fun stopRecording() {
-//    mediaRecorder?.apply {
-//        stop()
-//        reset()
-//        release()
-//        mediaRecorder = null
-//
-//        Toast.makeTest(this@CameraActivity, "Recording stopped", Toast.LENGTH_SHORT).show()
-//    }
-//}
-//
-//private fun getOutputFile(): File {
-//    val mediaStorageDir = File(
-//        Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MOVIES), "VideoRecordingApp"
-//    )
-//
-//    if (!mediaStorageDir.exists() ) {
-//        mediaStorageDir.mkdirs()
-//    }
-//
-//    filePath = "${mediaStorageDir.path}/${System.currentTimeMillis()}.mp4"
-//
-//    return File(filePath!!)
-//}
