@@ -12,7 +12,11 @@ import android.location.LocationManager
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
+import android.view.View
+import android.widget.AdapterView
 import android.widget.Button
+import android.widget.Spinner
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
@@ -27,6 +31,9 @@ class CameraActivity  : AppCompatActivity()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.camera_activity)
 
+        val studentSelectDropdown: Spinner = findViewById(R.id.studentSelectMenu)
+        val studentSelectMenu: TextView = findViewById(R.id.studentSelected)
+
         recordVideoButton = findViewById(R.id.RecordVideo)
         recordVideoButton.setOnClickListener { launchCamera() }
 
@@ -37,12 +44,29 @@ class CameraActivity  : AppCompatActivity()
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED || ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION), locationPermissionCode)
         }
+
+        studentSelectDropdown.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                val selectedStudent = parent.getItemAtPosition(position).toString()
+                val studentName = getString(R.string.selectedStudent, selectedStudent)
+                studentSelectMenu.text = studentName
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>) {
+                studentSelectMenu.setText(R.string.defaultSelection)
+            }
+        }
     }
 
     private val cameraPermissionCode = 100
     private val videoRequestCode = 300
     private val locationPermissionCode = 500
-    
+
     private fun launchCamera() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED || ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED )
         {
