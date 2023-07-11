@@ -52,6 +52,7 @@
         android:layout_marginEnd="177dp"
         android:layout_marginBottom="403dp"
         android:text="@string/selectedStudentDisplay"
+        android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

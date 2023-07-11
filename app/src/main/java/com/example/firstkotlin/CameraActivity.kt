@@ -32,10 +32,14 @@ class CameraActivity  : AppCompatActivity()
         setContentView(R.layout.camera_activity)
 
         val studentSelectDropdown: Spinner = findViewById(R.id.studentSelectMenu)
-        val studentSelectMenu: TextView = findViewById(R.id.studentSelected)
+        val studentText: TextView = findViewById(R.id.studentSelected)
 
         recordVideoButton = findViewById(R.id.RecordVideo)
-        recordVideoButton.setOnClickListener { launchCamera() }
+        //recordVideoButton.setOnClickListener { launchCamera() }
+        recordVideoButton.setOnClickListener {
+            val intentCameraAck2 = Intent(this, CameraActivity2::class.java)
+            startActivity(intentCameraAck2)
+        }
 
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED || ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.CAMERA, Manifest.permission.RECORD_AUDIO), cameraPermissionCode)
@@ -54,11 +58,11 @@ class CameraActivity  : AppCompatActivity()
             ) {
                 val selectedStudent = parent.getItemAtPosition(position).toString()
                 val studentName = getString(R.string.selectedStudent, selectedStudent)
-                studentSelectMenu.text = studentName
+                studentText.text = studentName
             }
 
             override fun onNothingSelected(parent: AdapterView<*>) {
-                studentSelectMenu.setText(R.string.defaultSelection)
+                studentText.setText(R.string.defaultSelection)
             }
         }
     }

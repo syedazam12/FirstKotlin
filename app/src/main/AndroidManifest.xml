@@ -77,6 +77,19 @@
                 <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".CameraActivity2"
+            android:theme="@style/Theme.LoginUI."
+            android:exported='false'>
+
+            <intent-filter>
+                <action android:name="android.intent.action.OPEN_CAMERA_ACTIVITY2"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+
+        </activity>
     </application>
 
 </manifest>

@@ -22,13 +22,15 @@
     <string name="selectedStudentDisplay">Student: </string>
 
     <string-array name="students">
-        <item>Azam</item>
+        <item>Zafar</item>
         <item>Elon Musk</item>
         <item>Shah Khan</item>
-        <item>Zafar</item>
+        <item>Azam</item>
         <item>Bob</item>
     </string-array>
 
     <string name="selectedStudent">The student is %s</string>
     <string name="defaultSelection">Please select a student from above</string>
+
+    <string name="startButton">Start/Stop</string>
 </resources>
